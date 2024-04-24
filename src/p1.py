@@ -1,4 +1,5 @@
 import re
+
 from pdfminer.high_level import extract_text
 
 
@@ -28,7 +29,7 @@ def evaluate_structure(recognized_titles, expected_titles):
 
 for path in range(1, 21):
     pdf_path = (
-        "2024泰迪杯c/C题-示例数据/赛题数据/附件1/C" + "{:03}".format(path) + ".pdf"
+            "2024泰迪杯c/C题-示例数据/赛题数据/附件1/C" + "{:03}".format(path) + ".pdf"
     )
     expected_titles = [
         "摘要",
