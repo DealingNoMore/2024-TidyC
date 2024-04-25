@@ -1,4 +1,5 @@
 import re
+import os
 
 from pdfminer.high_level import extract_text
 
@@ -27,11 +28,9 @@ def evaluate_structure(recognized_titles, expected_titles):
     return logic_score
 
 
-for path in range(1, 21):
-    pdf_path = (
-            "2024泰迪杯c/C题-示例数据/赛题数据/附件1/C" + "{:03}".format(path) + ".pdf"
-    )
-    expected_titles = [
+ABSOLUTE_PATH = os.getcwd()
+
+expected_titles = [
         "摘要",
         "目录",
         "问题重述",
@@ -45,8 +44,15 @@ for path in range(1, 21):
         "参考文献",
         "附录",
     ]
-    text = extract_pdf_text(pdf_path)
-    recognized_titles = recognize_structure(text, expected_titles)
-    # 0到1之间，如果要十分制，乘以10即可
-    score = evaluate_structure(recognized_titles, expected_titles)
-    print(f"论文结构的逻辑完整性和条理性得分: {score:.2f}")
+
+
+# for path in range(1, 31):
+#     pdf_path = (
+#         "./data/C题-示例数据/赛题数据/附件1/C" + "{:03}".format(path) + ".pdf"
+#     )
+    
+#     text = extract_pdf_text(pdf_path)
+#     recognized_titles = recognize_structure(text, expected_titles)
+#     # 0到1之间，如果要十分制，乘以10即可
+#     score = evaluate_structure(recognized_titles, expected_titles)
+#     print(f"论文结构的逻辑完整性和条理性得分: {score:.2f}")
